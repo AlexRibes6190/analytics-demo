@@ -4,57 +4,180 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Tienda Demo - Analytics</title>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NKG6F9ZD');</script>
+    <!-- End Google Tag Manager -->
     <link rel="stylesheet" href="styles.css">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NKG6F9ZD');</script>
-<!-- End Google Tag Manager -->    
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKG6F9ZD"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) --> 
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKG6F9ZD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     <header>
-        <h1>Mi Tienda Demo</h1>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="productos.html">Productos</a>
-            <a href="contacto.html">Contacto</a>
-        </nav>
+        <div class="header-content">
+            <h1>🛍️ Mi Tienda Demo</h1>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="carrito.html" class="cart-link">
+                    🛒 Carrito (<span id="cart-count">0</span>)
+                </a>
+            </nav>
+        </div>
     </header>
 
+    <!-- Banner Promocional -->
+    <div class="promo-banner">
+        <p>🎉 ¡Envío GRATIS en pedidos superiores a 50€! <button class="btn-promo" onclick="scrollToProducts()">Ver Productos</button></p>
+    </div>
+
     <main>
+        <!-- Hero Section -->
         <section class="hero">
             <h2>Bienvenido a nuestra tienda</h2>
-            <button id="btn-cta">Ver Productos</button>
+            <p>Encuentra los mejores productos al mejor precio</p>
+            <button id="btn-cta" class="btn-primary">Ver Productos</button>
         </section>
 
-        <section class="productos-destacados">
-            <h3>Productos Destacados</h3>
-            <div class="producto">
-                <img src="https://via.placeholder.com/200" alt="Producto 1">
-                <h4>Producto 1</h4>
-                <p>€29.99</p>
-                <button class="btn-comprar">Comprar</button>
+        <!-- Newsletter -->
+        <section class="newsletter-section">
+            <div class="newsletter-container">
+                <h3>📧 Suscríbete a nuestra newsletter</h3>
+                <p>Recibe ofertas exclusivas y novedades</p>
+                <form id="newsletter-form" class="newsletter-form">
+                    <input type="email" id="newsletter-email" placeholder="tu@email.com" required>
+                    <button type="submit" class="btn-secondary">Suscribirse</button>
+                </form>
+                <p id="newsletter-message" class="newsletter-message"></p>
             </div>
-            <div class="producto">
-                <img src="https://via.placeholder.com/200" alt="Producto 2">
-                <h4>Producto 2</h4>
-                <p>€49.99</p>
-                <button class="btn-comprar">Comprar</button>
+        </section>
+
+        <!-- Productos Destacados -->
+        <section class="productos-destacados" id="productos">
+            <h3>Productos Destacados</h3>
+            <div class="productos-grid">
+                <div class="producto" data-product-id="prod-001">
+                    <img src="https://via.placeholder.com/250/4A90E2/FFFFFF?text=Smartphone+Pro" alt="Smartphone Pro">
+                    <span class="badge-nuevo">NUEVO</span>
+                    <h4>Smartphone Pro X1</h4>
+                    <p class="product-description">Última generación con cámara 108MP</p>
+                    <p class="product-price">€699.99</p>
+                    <button class="btn-comprar" 
+                            data-product-id="prod-001"
+                            data-product-name="Smartphone Pro X1"
+                            data-product-price="699.99"
+                            data-product-category="Electrónica">
+                        Añadir al Carrito
+                    </button>
+                    <a href="producto-detalle.html?id=prod-001" class="btn-ver-mas">Ver Detalles</a>
+                </div>
+
+                <div class="producto" data-product-id="prod-002">
+                    <img src="https://via.placeholder.com/250/E94B3C/FFFFFF?text=Auriculares+BT" alt="Auriculares Bluetooth">
+                    <span class="badge-oferta">-20%</span>
+                    <h4>Auriculares Bluetooth Pro</h4>
+                    <p class="product-description">Cancelación de ruido activa</p>
+                    <p class="product-price"><span class="old-price">€199.99</span> €159.99</p>
+                    <button class="btn-comprar"
+                            data-product-id="prod-002"
+                            data-product-name="Auriculares Bluetooth Pro"
+                            data-product-price="159.99"
+                            data-product-category="Accesorios">
+                        Añadir al Carrito
+                    </button>
+                    <a href="producto-detalle.html?id=prod-002" class="btn-ver-mas">Ver Detalles</a>
+                </div>
+
+                <div class="producto" data-product-id="prod-003">
+                    <img src="https://via.placeholder.com/250/6C5CE7/FFFFFF?text=Smartwatch+X3" alt="Smartwatch">
+                    <h4>Smartwatch X3</h4>
+                    <p class="product-description">Monitor de salud 24/7</p>
+                    <p class="product-price">€249.99</p>
+                    <button class="btn-comprar"
+                            data-product-id="prod-003"
+                            data-product-name="Smartwatch X3"
+                            data-product-price="249.99"
+                            data-product-category="Wearables">
+                        Añadir al Carrito
+                    </button>
+                    <a href="producto-detalle.html?id=prod-003" class="btn-ver-mas">Ver Detalles</a>
+                </div>
+
+                <div class="producto" data-product-id="prod-004">
+                    <img src="https://via.placeholder.com/250/00B894/FFFFFF?text=Tablet+Pro" alt="Tablet">
+                    <h4>Tablet Pro 12"</h4>
+                    <p class="product-description">Perfecta para diseño y productividad</p>
+                    <p class="product-price">€549.99</p>
+                    <button class="btn-comprar"
+                            data-product-id="prod-004"
+                            data-product-name="Tablet Pro 12"
+                            data-product-price="549.99"
+                            data-product-category="Electrónica">
+                        Añadir al Carrito
+                    </button>
+                    <a href="producto-detalle.html?id=prod-004" class="btn-ver-mas">Ver Detalles</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Beneficios -->
+        <section class="benefits-section">
+            <div class="benefit">
+                <h4>🚚 Envío Gratis</h4>
+                <p>En pedidos +50€</p>
+            </div>
+            <div class="benefit">
+                <h4>🔒 Pago Seguro</h4>
+                <p>100% protegido</p>
+            </div>
+            <div class="benefit">
+                <h4>↩️ Devoluciones</h4>
+                <p>30 días gratis</p>
+            </div>
+            <div class="benefit">
+                <h4>💬 Soporte 24/7</h4>
+                <p>Siempre disponibles</p>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2024 Mi Tienda Demo - Sitio para pruebas de Analytics</p>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Sobre Nosotros</h4>
+                <ul>
+                    <li><a href="#">Quiénes somos</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Envíos</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Síguenos</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link" data-social="facebook">Facebook</a>
+                    <a href="#" class="social-link" data-social="instagram">Instagram</a>
+                    <a href="#" class="social-link" data-social="twitter">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">© 2024 Mi Tienda Demo - Sitio para pruebas de Analytics</p>
     </footer>
 
     <script src="script.js"></script>
 </body>
-
 </html>
