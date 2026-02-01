@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Mi Tienda Demo</title>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NKG6F9ZD');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKG6F9ZD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <div class="header-content">
+            <h1>🛍️ Mi Tienda Demo</h1>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="contacto.html" class="active">Contacto</a>
+                <a href="carrito.html" class="cart-link">
+                    🛒 Carrito (<span id="cart-count">0</span>)
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contact-page">
+        <div class="page-header">
+            <h2>📧 Contacta con Nosotros</h2>
+            <p>¿Tienes alguna pregunta? Estamos aquí para ayudarte</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-card">
+                    <h3>📞 Teléfono</h3>
+                    <p><a href="tel:+34900123456">+34 900 123 456</a></p>
+                    <small>Lun-Vie: 9:00 - 20:00h</small>
+                </div>
+
+                <div class="info-card">
+                    <h3>✉️ Email</h3>
+                    <p><a href="mailto:info@mitiendademo.com">info@mitiendademo.com</a></p>
+                    <small>Respondemos en 24h</small>
+                </div>
+
+                <div class="info-card">
+                    <h3>📍 Dirección</h3>
+                    <p>Calle Ejemplo, 123<br>28001 Madrid, España</p>
+                    <small>Horario: 10:00 - 14:00 y 17:00 - 20:00</small>
+                </div>
+
+                <div class="info-card">
+                    <h3>💬 Chat en Vivo</h3>
+                    <p><button class="btn-chat" onclick="openChat()">Iniciar Chat</button></p>
+                    <small>Disponible Lun-Vie 9:00-20:00h</small>
+                </div>
+            </div>
+
+            <div class="contact-form-section">
+                <h3>Envíanos un Mensaje</h3>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-name">Nombre *</label>
+                            <input type="text" id="contact-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email *</label>
+                            <input type="email" id="contact-email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-phone">Teléfono</label>
+                        <input type="tel" id="contact-phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-subject">Asunto *</label>
+                        <select id="contact-subject" required>
+                            <option value="">Selecciona un asunto</option>
+                            <option value="Información de productos">Información de productos</option>
+                            <option value="Estado del pedido">Estado del pedido</option>
+                            <option value="Devoluciones">Devoluciones</option>
+                            <option value="Problemas técnicos">Problemas técnicos</option>
+                            <option value="Sugerencias">Sugerencias</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-message">Mensaje *</label>
+                        <textarea id="contact-message" rows="6" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="contact-newsletter">
+                            Quiero recibir novedades y ofertas por email
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-large">Enviar Mensaje</button>
+                    <p id="contact-form-message" class="form-message"></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h3>Preguntas Frecuentes</h3>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cuál es el tiempo de entrega?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>El tiempo de entrega estándar es de 24-48 horas laborables. Para envíos urgentes, ofrecemos entrega en 24h con un coste adicional.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cuál es la política de devoluciones?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Tienes 30 días desde la recepción del producto para realizar una devolución gratuita. El producto debe estar en perfecto estado y con su embalaje original.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Qué métodos de pago aceptan?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Aceptamos tarjetas de crédito/débito (Visa, Mastercard, American Express), PayPal y transferencia bancaria.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Los productos tienen garantía?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, todos nuestros productos cuentan con la garantía del fabricante. El periodo varía según el producto, pero generalmente es de 2 años.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Hacen envíos internacionales?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Actualmente realizamos envíos a toda la Unión Europea. Los gastos de envío y tiempos de entrega varían según el destino.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Sobre Nosotros</h4>
+                <ul>
+                    <li><a href="#">Quiénes somos</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Envíos</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Síguenos</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link" data-social="facebook">Facebook</a>
+                    <a href="#" class="social-link" data-social="instagram">Instagram</a>
+                    <a href="#" class="social-link" data-social="twitter">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">© 2024 Mi Tienda Demo - Sitio para pruebas de Analytics</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

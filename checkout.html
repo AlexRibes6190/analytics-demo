@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Mi Tienda Demo</title>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NKG6F9ZD');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKG6F9ZD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <div class="header-content">
+            <h1>🛍️ Mi Tienda Demo</h1>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="carrito.html" class="cart-link">
+                    🛒 Carrito (<span id="cart-count">0</span>)
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="checkout-page">
+        <div class="page-header">
+            <h2>Finalizar Compra</h2>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="checkout-steps">
+            <div class="step active" id="step-1-indicator">
+                <span class="step-number">1</span>
+                <span class="step-label">Datos de Envío</span>
+            </div>
+            <div class="step" id="step-2-indicator">
+                <span class="step-number">2</span>
+                <span class="step-label">Método de Pago</span>
+            </div>
+            <div class="step" id="step-3-indicator">
+                <span class="step-number">3</span>
+                <span class="step-label">Confirmación</span>
+            </div>
+        </div>
+
+        <div class="checkout-container">
+            <!-- Step 1: Shipping Information -->
+            <div id="step-1" class="checkout-step active">
+                <h3>Datos de Envío</h3>
+                <form id="shipping-form" class="checkout-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">Nombre *</label>
+                            <input type="text" id="first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Apellidos *</label>
+                            <input type="text" id="last-name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Teléfono *</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Dirección *</label>
+                        <input type="text" id="address" placeholder="Calle, número, piso..." required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">Ciudad *</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postal-code">Código Postal *</label>
+                            <input type="text" id="postal-code" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">País *</label>
+                        <select id="country" required>
+                            <option value="">Selecciona un país</option>
+                            <option value="ES" selected>España</option>
+                            <option value="FR">Francia</option>
+                            <option value="PT">Portugal</option>
+                            <option value="IT">Italia</option>
+                            <option value="DE">Alemania</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notas del pedido (opcional)</label>
+                        <textarea id="notes" rows="3" placeholder="Instrucciones especiales de entrega..."></textarea>
+                    </div>
+
+                    <button type="button" class="btn-primary btn-large" onclick="goToStep2()">
+                        Continuar al Pago →
+                    </button>
+                </form>
+            </div>
+
+            <!-- Step 2: Payment Method -->
+            <div id="step-2" class="checkout-step">
+                <h3>Método de Pago</h3>
+                <div class="payment-methods">
+                    <label class="payment-method">
+                        <input type="radio" name="payment" value="credit-card" checked>
+                        <span class="method-label">
+                            <strong>💳 Tarjeta de Crédito/Débito</strong>
+                            <small>Pago seguro mediante SSL</small>
+                        </span>
+                    </label>
+
+                    <label class="payment-method">
+                        <input type="radio" name="payment" value="paypal">
+                        <span class="method-label">
+                            <strong>🅿️ PayPal</strong>
+                            <small>Paga con tu cuenta PayPal</small>
+                        </span>
+                    </label>
+
+                    <label class="payment-method">
+                        <input type="radio" name="payment" value="transfer">
+                        <span class="method-label">
+                            <strong>🏦 Transferencia Bancaria</strong>
+                            <small>Recibirás los datos por email</small>
+                        </span>
+                    </label>
+                </div>
+
+                <div id="credit-card-form" class="payment-form">
+                    <div class="form-group">
+                        <label for="card-number">Número de Tarjeta</label>
+                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="card-expiry">Fecha de Expiración</label>
+                            <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvv">CVV</label>
+                            <input type="text" id="card-cvv" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="card-name">Nombre del Titular</label>
+                        <input type="text" id="card-name" placeholder="Como aparece en la tarjeta">
+                    </div>
+                </div>
+
+                <div class="checkout-actions">
+                    <button class="btn-secondary" onclick="goToStep1()">← Volver</button>
+                    <button class="btn-primary btn-large" onclick="goToStep3()">Continuar →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Confirmation -->
+            <div id="step-3" class="checkout-step">
+                <h3>Confirmación del Pedido</h3>
+                
+                <div class="order-summary-section">
+                    <h4>Resumen del Pedido</h4>
+                    <div id="checkout-items-list"></div>
+                </div>
+
+                <div class="shipping-summary">
+                    <h4>Dirección de Envío</h4>
+                    <p id="shipping-summary-display"></p>
+                </div>
+
+                <div class="payment-summary">
+                    <h4>Método de Pago</h4>
+                    <p id="payment-summary-display"></p>
+                </div>
+
+                <div class="total-summary">
+                    <div class="summary-line">
+                        <span>Subtotal:</span>
+                        <span id="checkout-subtotal">€0.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Envío:</span>
+                        <span id="checkout-shipping">€0.00</span>
+                    </div>
+                    <hr>
+                    <div class="summary-line total">
+                        <span><strong>Total:</strong></span>
+                        <span id="checkout-total"><strong>€0.00</strong></span>
+                    </div>
+                </div>
+
+                <div class="terms-checkbox">
+                    <label>
+                        <input type="checkbox" id="terms-accepted" required>
+                        He leído y acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a>
+                    </label>
+                </div>
+
+                <div class="checkout-actions">
+                    <button class="btn-secondary" onclick="goToStep2()">← Volver</button>
+                    <button class="btn-primary btn-large" onclick="completePurchase()">
+                        🛒 Confirmar Pedido
+                    </button>
+                </div>
+            </div>
+
+            <!-- Order Summary Sidebar -->
+            <aside class="checkout-sidebar">
+                <h3>Resumen</h3>
+                <div id="sidebar-items-list"></div>
+                <hr>
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span id="sidebar-subtotal">€0.00</span>
+                </div>
+                <div class="summary-line">
+                    <span>Envío:</span>
+                    <span id="sidebar-shipping">€0.00</span>
+                </div>
+                <hr>
+                <div class="summary-line total">
+                    <span><strong>Total:</strong></span>
+                    <span id="sidebar-total"><strong>€0.00</strong></span>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Sobre Nosotros</h4>
+                <ul>
+                    <li><a href="#">Quiénes somos</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Envíos</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright">© 2024 Mi Tienda Demo - Sitio para pruebas de Analytics</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

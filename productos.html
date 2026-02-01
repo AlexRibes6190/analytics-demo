@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Mi Tienda Demo</title>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NKG6F9ZD');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKG6F9ZD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <div class="header-content">
+            <h1>🛍️ Mi Tienda Demo</h1>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="productos.html" class="active">Productos</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="carrito.html" class="cart-link">
+                    🛒 Carrito (<span id="cart-count">0</span>)
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="productos-page">
+        <div class="page-header">
+            <h2>Todos los Productos</h2>
+            <p>Explora nuestro catálogo completo</p>
+        </div>
+
+        <div class="productos-container">
+            <!-- Filtros -->
+            <aside class="filters-sidebar">
+                <h3>Filtros</h3>
+                
+                <div class="filter-group">
+                    <h4>Categorías</h4>
+                    <label><input type="checkbox" class="filter-category" value="Electrónica" checked> Electrónica</label>
+                    <label><input type="checkbox" class="filter-category" value="Accesorios" checked> Accesorios</label>
+                    <label><input type="checkbox" class="filter-category" value="Wearables" checked> Wearables</label>
+                    <label><input type="checkbox" class="filter-category" value="Gaming" checked> Gaming</label>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Precio</h4>
+                    <label><input type="radio" name="price" class="filter-price" value="all" checked> Todos</label>
+                    <label><input type="radio" name="price" class="filter-price" value="0-200"> Menos de €200</label>
+                    <label><input type="radio" name="price" class="filter-price" value="200-500"> €200 - €500</label>
+                    <label><input type="radio" name="price" class="filter-price" value="500-1000"> Más de €500</label>
+                </div>
+
+                <button class="btn-reset-filters" onclick="resetFilters()">Limpiar Filtros</button>
+            </aside>
+
+            <!-- Lista de Productos -->
+            <div class="productos-main">
+                <div class="productos-toolbar">
+                    <p><span id="product-count">8</span> productos encontrados</p>
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Buscar productos...">
+                    </div>
+                    <select id="sort-select" class="sort-select">
+                        <option value="default">Ordenar por</option>
+                        <option value="price-asc">Precio: Menor a Mayor</option>
+                        <option value="price-desc">Precio: Mayor a Menor</option>
+                        <option value="name">Nombre A-Z</option>
+                    </select>
+                </div>
+
+                <div class="productos-grid" id="productos-grid">
+                    <div class="producto" data-product-id="prod-001" data-category="Electrónica" data-price="699.99">
+                        <img src="https://via.placeholder.com/250/4A90E2/FFFFFF?text=Smartphone+Pro" alt="Smartphone Pro">
+                        <span class="badge-nuevo">NUEVO</span>
+                        <h4>Smartphone Pro X1</h4>
+                        <p class="product-description">Última generación con cámara 108MP</p>
+                        <p class="product-price">€699.99</p>
+                        <button class="btn-comprar" 
+                                data-product-id="prod-001"
+                                data-product-name="Smartphone Pro X1"
+                                data-product-price="699.99"
+                                data-product-category="Electrónica">
+                            Añadir al Carrito
+                        </button>
+                        <a href="producto-detalle.html?id=prod-001" class="btn-ver-mas">Ver Detalles</a>
+                    </div>
+
+                    <div class="producto" data-product-id="prod-002" data-category="Accesorios" data-price="159.99">
+                        <img src="https://via.placeholder.com/250/E94B3C/FFFFFF?text=Auriculares+BT" alt="Auriculares Bluetooth">
+                        <span class="badge-oferta">-20%</span>
+                        <h4>Auriculares Bluetooth Pro</h4>
+                        <p class="product-description">Cancelación de ruido activa</p>
+                        <p class="product-price">€159.99</p>
+                        <button class="btn-comprar"
+                                data-product-id="prod-002"
+                                data-product-name="Auriculares Bluetooth Pro"
+                                data-product-price="159.99"
+                                data-product-category="Accesorios">
+                            Añadir al Carrito
+                        </button>
+                        <a href="producto-detalle.html?id=prod-002" class="btn-ver-mas">Ver Detalles</a>
+                    </div>
+
+                    <div class="producto" data-product-id="prod-003" data-category="Wearables" data-price="249.99">
+                        <img src="https://via.placeholder.com/250/6C5CE7/FFFFFF?text=Smartwatch+X3" alt="Smartwatch">
+                        <h4>Smartwatch X3</h4>
+                        <p class="product-description">Monitor de salud 24/7</p>
+                        <p class="product-price">€249.99</p>
+                        <button class="btn-comprar"
+                                data-product-id="prod-003"
+                                data-product-name="Smartwatch X3"
+                                data-product-price="249.99"
+                                data-product-category="Wearables">
+                            Añadir al Carrito
+                        </button>
+                        <a href="producto-detalle.html?id=prod-003" class="btn-ver-mas">Ver Detalles</a>
+                    </div>
+
+                    <div class="producto" data-product-id="prod-004" data-category="Electrónica" data-price="549.99">
+                        <img src="https://via.placeholder.com/250/00B894/FFFFFF?text=Tablet+Pro" alt="Tablet">
+                        <h4>Tablet Pro 12"</h4>
+                        <p class="product-description">Perfecta para diseño y productividad</p>
+                        <p class="product-price">€549.99</p>
+                        <button class="btn-comprar"
+                                data-product-id="prod-004"
+                                data-product-name="Tablet Pro 12"
+                                data-product-price="549.99"
+                                data-product-category="Electrónica">
+                            Añadir al Carrito
+                        </button>
+                        <a href="producto-detalle.html?id=prod-004" class="btn-ver-mas">Ver Detalles</a>
+                    </div>
+
+                    <div class="producto" data-product-id="prod-005" data-category="Gaming" data-price="899.99">
+                        <img src="https://via.placeholder.com/250/FF6348/FFFFFF?text=Consola+Gaming" alt="Consola Gaming">
+                        <span class="badge-nuevo">NUEVO</span>
+                        <h4>Consola Gaming Pro</h4>
+                        <p class="product-description">4K 120fps - Próxima generación</p>
+                        <p class="product-price">€899.99</p>
+                        <button class="btn-comprar"
+                                data-product-id="prod-005"
+                                data-product-name="Consola Gaming Pro"
+                                data-product-price="899.99"
+                                data-product-category="Gaming">
+                            Añadir al Carrito
+                        </button>
+                        <a href="producto-detalle.html?id=prod-005" class="btn-ver-mas">Ver Detalles</a>
+                    </div>
+
+                    <div class="producto" data-product-id="prod-006" data-category="Accesorios" data-price="79.99">
+                        <img src="https://via.placeholder.com/250/FFA502/FFFFFF?text=Teclado+RGB" alt="Teclado Mecánico">
+                        <h4>Teclado Mecánico RGB</h4>
+                        <p class="product-description">Switches mecánicos Cherry MX</p>
+                        <p class="product-price">€79.99</p>
+                        <button class="btn-comprar"
+                                data-product-id="prod-006"
+                                data-product-name="Teclado Mecánico RGB"
+                                data-product-price="79.99"
+                                data-product-category="Accesorios">
+                            Añadir al Carrito
+                        </button>
+                        <a href="producto-detalle.html?id=prod-006" class="btn-ver-mas">Ver Detalles</a>
+                    </div>
+
+                    <div class="producto" data-product-id="prod-007" data-category="Accesorios" data-price="49.99">
+                        <img src="https://via.placeholder.com/250/A29BFE/FFFFFF?text=Ratón+Gaming" alt="Ratón Gaming">
+                        <span class="badge-oferta">-25%</span>
+                        <h4>Ratón Gaming Pro</h4>
+                        <p class="product-description">16000 DPI - RGB personalizable</p>
+                        <p class="product-price">€49.99</p>
+                        <button class="btn-comprar"
+                                data-product-id="prod-007"
+                                data-product-name="Ratón Gaming Pro"
+                                data-product-price="49.99"
+                                data-product-category="Accesorios">
+                            Añadir al Carrito
+                        </button>
+                        <a href="producto-detalle.html?id=prod-007" class="btn-ver-mas">Ver Detalles</a>
+                    </div>
+
+                    <div class="producto" data-product-id="prod-008" data-category="Electrónica" data-price="299.99">
+                        <img src="https://via.placeholder.com/250/74B9FF/FFFFFF?text=Webcam+4K" alt="Webcam">
+                        <h4>Webcam 4K Pro</h4>
+                        <p class="product-description">Perfecta para streaming y videoconferencias</p>
+                        <p class="product-price">€299.99</p>
+                        <button class="btn-comprar"
+                                data-product-id="prod-008"
+                                data-product-name="Webcam 4K Pro"
+                                data-product-price="299.99"
+                                data-product-category="Electrónica">
+                            Añadir al Carrito
+                        </button>
+                        <a href="producto-detalle.html?id=prod-008" class="btn-ver-mas">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <div id="no-results" class="no-results" style="display: none;">
+                    <p>😕 No se encontraron productos con esos criterios</p>
+                    <button class="btn-primary" onclick="resetFilters()">Ver todos los productos</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Sobre Nosotros</h4>
+                <ul>
+                    <li><a href="#">Quiénes somos</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Envíos</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright">© 2024 Mi Tienda Demo - Sitio para pruebas de Analytics</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Mi Tienda Demo</title>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NKG6F9ZD');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKG6F9ZD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <div class="header-content">
+            <h1>🛍️ Mi Tienda Demo</h1>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="carrito.html" class="cart-link active">
+                    🛒 Carrito (<span id="cart-count">0</span>)
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="cart-page">
+        <div class="page-header">
+            <h2>🛒 Tu Carrito de Compras</h2>
+        </div>
+
+        <div class="cart-container">
+            <!-- Carrito Vacío -->
+            <div id="empty-cart" class="empty-cart">
+                <p>😕 Tu carrito está vacío</p>
+                <a href="productos.html" class="btn-primary">Ver Productos</a>
+            </div>
+
+            <!-- Carrito con Productos -->
+            <div id="cart-with-items" class="cart-with-items" style="display: none;">
+                <div class="cart-items-section">
+                    <h3>Productos en tu carrito</h3>
+                    <div id="cart-items-list"></div>
+                </div>
+
+                <div class="cart-summary">
+                    <h3>Resumen del Pedido</h3>
+                    <div class="summary-line">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal">€0.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Envío:</span>
+                        <span id="cart-shipping">€0.00</span>
+                    </div>
+                    <div class="summary-line discount" id="discount-line" style="display: none;">
+                        <span>Descuento (WELCOME10):</span>
+                        <span id="cart-discount">-€0.00</span>
+                    </div>
+                    <hr>
+                    <div class="summary-line total">
+                        <span><strong>Total:</strong></span>
+                        <span id="cart-total"><strong>€0.00</strong></span>
+                    </div>
+
+                    <div class="coupon-section">
+                        <input type="text" id="coupon-input" placeholder="Código de descuento">
+                        <button class="btn-secondary" onclick="applyCoupon()">Aplicar</button>
+                        <p id="coupon-message" class="coupon-message"></p>
+                    </div>
+
+                    <button class="btn-primary btn-large" onclick="goToCheckout()">
+                        Proceder al Pago
+                    </button>
+                    <a href="productos.html" class="continue-shopping">← Seguir Comprando</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Sobre Nosotros</h4>
+                <ul>
+                    <li><a href="#">Quiénes somos</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Envíos</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright">© 2024 Mi Tienda Demo - Sitio para pruebas de Analytics</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

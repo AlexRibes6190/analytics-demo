@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto - Mi Tienda Demo</title>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NKG6F9ZD');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKG6F9ZD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <div class="header-content">
+            <h1>🛍️ Mi Tienda Demo</h1>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="carrito.html" class="cart-link">
+                    🛒 Carrito (<span id="cart-count">0</span>)
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="product-detail-page">
+        <div class="breadcrumb">
+            <a href="index.html">Inicio</a> > <a href="productos.html">Productos</a> > <span id="breadcrumb-product">Smartphone Pro X1</span>
+        </div>
+
+        <div class="product-detail-container">
+            <!-- Galería de Imágenes -->
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img id="main-product-image" src="https://via.placeholder.com/500/4A90E2/FFFFFF?text=Smartphone+Pro+X1" alt="Producto Principal">
+                </div>
+                <div class="thumbnail-images">
+                    <img src="https://via.placeholder.com/100/4A90E2/FFFFFF?text=Vista+1" alt="Vista 1" class="thumbnail active" onclick="changeImage(this)">
+                    <img src="https://via.placeholder.com/100/5B9FED/FFFFFF?text=Vista+2" alt="Vista 2" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://via.placeholder.com/100/6CAEF8/FFFFFF?text=Vista+3" alt="Vista 3" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://via.placeholder.com/100/7DBEFF/FFFFFF?text=Vista+4" alt="Vista 4" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+
+            <!-- Información del Producto -->
+            <div class="product-info">
+                <h2 id="product-name">Smartphone Pro X1</h2>
+                <div class="product-rating">
+                    ⭐⭐⭐⭐⭐ <span>(128 valoraciones)</span>
+                </div>
+                <p class="product-price-large">€<span id="product-price">699.99</span></p>
+                <p class="product-stock">✅ En stock - Envío en 24-48h</p>
+
+                <div class="product-description-full">
+                    <h3>Descripción</h3>
+                    <p>El Smartphone Pro X1 representa el futuro de la tecnología móvil. Con su revolucionaria cámara de 108MP, captura cada detalle con una claridad asombrosa.</p>
+                    <ul>
+                        <li>Pantalla AMOLED de 6.7" a 120Hz</li>
+                        <li>Procesador Octacore de última generación</li>
+                        <li>12GB RAM + 256GB almacenamiento</li>
+                        <li>Batería 5000mAh con carga rápida 65W</li>
+                        <li>5G y WiFi 6E</li>
+                        <li>Resistencia al agua IP68</li>
+                    </ul>
+                </div>
+
+                <div class="product-options">
+                    <div class="option-group">
+                        <label>Color:</label>
+                        <select id="product-color" class="product-select">
+                            <option value="Negro">Negro</option>
+                            <option value="Blanco">Blanco</option>
+                            <option value="Azul">Azul</option>
+                        </select>
+                    </div>
+
+                    <div class="option-group">
+                        <label>Cantidad:</label>
+                        <input type="number" id="product-quantity" value="1" min="1" max="10" class="quantity-input">
+                    </div>
+                </div>
+
+                <div class="product-actions">
+                    <button id="btn-add-to-cart" class="btn-primary btn-large"
+                            data-product-id="prod-001"
+                            data-product-name="Smartphone Pro X1"
+                            data-product-price="699.99"
+                            data-product-category="Electrónica">
+                        🛒 Añadir al Carrito
+                    </button>
+                    <button class="btn-secondary btn-large" onclick="addToWishlist()">
+                        ❤️ Añadir a Favoritos
+                    </button>
+                </div>
+
+                <div class="product-features">
+                    <div class="feature">
+                        <span>🚚</span>
+                        <div>
+                            <strong>Envío Gratis</strong>
+                            <p>En pedidos +50€</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span>↩️</span>
+                        <div>
+                            <strong>Devolución Gratis</strong>
+                            <p>30 días de garantía</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span>🔒</span>
+                        <div>
+                            <strong>Pago Seguro</strong>
+                            <p>Protección SSL</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs de Información -->
+        <div class="product-tabs">
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="showTab('specs')">Especificaciones</button>
+                <button class="tab-button" onclick="showTab('reviews')">Valoraciones</button>
+                <button class="tab-button" onclick="showTab('shipping')">Envío y Devoluciones</button>
+            </div>
+
+            <div id="specs-tab" class="tab-content active">
+                <h3>Especificaciones Técnicas</h3>
+                <table class="specs-table">
+                    <tr><td><strong>Pantalla</strong></td><td>6.7" AMOLED, 2400x1080, 120Hz</td></tr>
+                    <tr><td><strong>Procesador</strong></td><td>Snapdragon 8 Gen 2</td></tr>
+                    <tr><td><strong>RAM</strong></td><td>12GB LPDDR5</td></tr>
+                    <tr><td><strong>Almacenamiento</strong></td><td>256GB UFS 3.1</td></tr>
+                    <tr><td><strong>Cámara Principal</strong></td><td>108MP f/1.8 + 12MP Ultra Wide + 5MP Macro</td></tr>
+                    <tr><td><strong>Cámara Frontal</strong></td><td>32MP f/2.4</td></tr>
+                    <tr><td><strong>Batería</strong></td><td>5000mAh con carga rápida 65W</td></tr>
+                    <tr><td><strong>Sistema Operativo</strong></td><td>Android 14</td></tr>
+                    <tr><td><strong>Conectividad</strong></td><td>5G, WiFi 6E, Bluetooth 5.3, NFC</td></tr>
+                    <tr><td><strong>Dimensiones</strong></td><td>163 x 76 x 8.9 mm</td></tr>
+                    <tr><td><strong>Peso</strong></td><td>198g</td></tr>
+                </table>
+            </div>
+
+            <div id="reviews-tab" class="tab-content">
+                <h3>Valoraciones de Clientes</h3>
+                <div class="review">
+                    <div class="review-header">
+                        <strong>María G.</strong>
+                        <span class="review-stars">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p>"Excelente teléfono, la cámara es increíble y la batería dura todo el día sin problemas."</p>
+                </div>
+                <div class="review">
+                    <div class="review-header">
+                        <strong>Carlos R.</strong>
+                        <span class="review-stars">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p>"Muy rápido y fluido. La pantalla de 120Hz se nota muchísimo. Totalmente recomendado."</p>
+                </div>
+                <div class="review">
+                    <div class="review-header">
+                        <strong>Laura M.</strong>
+                        <span class="review-stars">⭐⭐⭐⭐</span>
+                    </div>
+                    <p>"Buena relación calidad-precio. Solo echo de menos un zoom óptico más potente."</p>
+                </div>
+            </div>
+
+            <div id="shipping-tab" class="tab-content">
+                <h3>Información de Envío y Devoluciones</h3>
+                <h4>📦 Envío</h4>
+                <ul>
+                    <li>Envío gratis en pedidos superiores a 50€</li>
+                    <li>Entrega en 24-48h laborables</li>
+                    <li>Seguimiento online de tu pedido</li>
+                    <li>Envío urgente disponible (entrega en 24h)</li>
+                </ul>
+                <h4>↩️ Devoluciones</h4>
+                <ul>
+                    <li>30 días para devolver tu producto</li>
+                    <li>Devolución gratuita</li>
+                    <li>Reembolso completo garantizado</li>
+                    <li>Producto debe estar en perfecto estado</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Productos Relacionados -->
+        <section class="related-products">
+            <h3>También te puede interesar</h3>
+            <div class="productos-grid">
+                <div class="producto" data-product-id="prod-002">
+                    <img src="https://via.placeholder.com/250/E94B3C/FFFFFF?text=Auriculares+BT" alt="Auriculares">
+                    <h4>Auriculares Bluetooth Pro</h4>
+                    <p class="product-price">€159.99</p>
+                    <button class="btn-comprar"
+                            data-product-id="prod-002"
+                            data-product-name="Auriculares Bluetooth Pro"
+                            data-product-price="159.99"
+                            data-product-category="Accesorios">
+                        Añadir al Carrito
+                    </button>
+                </div>
+
+                <div class="producto" data-product-id="prod-003">
+                    <img src="https://via.placeholder.com/250/6C5CE7/FFFFFF?text=Smartwatch" alt="Smartwatch">
+                    <h4>Smartwatch X3</h4>
+                    <p class="product-price">€249.99</p>
+                    <button class="btn-comprar"
+                            data-product-id="prod-003"
+                            data-product-name="Smartwatch X3"
+                            data-product-price="249.99"
+                            data-product-category="Wearables">
+                        Añadir al Carrito
+                    </button>
+                </div>
+
+                <div class="producto" data-product-id="prod-008">
+                    <img src="https://via.placeholder.com/250/74B9FF/FFFFFF?text=Webcam+4K" alt="Webcam">
+                    <h4>Webcam 4K Pro</h4>
+                    <p class="product-price">€299.99</p>
+                    <button class="btn-comprar"
+                            data-product-id="prod-008"
+                            data-product-name="Webcam 4K Pro"
+                            data-product-price="299.99"
+                            data-product-category="Electrónica">
+                        Añadir al Carrito
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Sobre Nosotros</h4>
+                <ul>
+                    <li><a href="#">Quiénes somos</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Envíos</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright">© 2024 Mi Tienda Demo - Sitio para pruebas de Analytics</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
