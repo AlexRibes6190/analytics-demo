@@ -127,20 +127,20 @@ function addToCart(button) {
     // Save to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
     
-    // Push add_to_cart event to dataLayer
+    // Push add_to_cart event to dataLayer (GA4 format)
+    window.dataLayer.push({ ecommerce: null }); // Clear previous ecommerce object
     window.dataLayer.push({
         'event': 'add_to_cart',
         'ecommerce': {
-            'currencyCode': 'EUR',
-            'add': {
-                'products': [{
-                    'id': productId,
-                    'name': productName,
-                    'price': productPrice,
-                    'category': productCategory,
-                    'quantity': quantity
-                }]
-            }
+            'currency': 'EUR',
+            'value': productPrice * quantity,
+            'items': [{
+                'item_id': productId,
+                'item_name': productName,
+                'price': productPrice,
+                'item_category': productCategory,
+                'quantity': quantity
+            }]
         }
     });
     
@@ -176,13 +176,14 @@ function renderCart() {
         emptyCart.style.display = 'block';
         cartWithItems.style.display = 'none';
         
-        // Push view_cart event with empty cart
+        // Push view_cart event with empty cart (GA4 format)
+        window.dataLayer.push({ ecommerce: null });
         window.dataLayer.push({
             'event': 'view_cart',
             'ecommerce': {
-                'currencyCode': 'EUR',
-                'cart_total': 0,
-                'cart_items': 0
+                'currency': 'EUR',
+                'value': 0,
+                'items': []
             }
         });
         
@@ -224,22 +225,22 @@ function renderCart() {
     // Update totals
     updateCartTotals();
     
-    // Push view_cart event to dataLayer
-    const products = cart.map(item => ({
-        'id': item.id,
-        'name': item.name,
+    // Push view_cart event to dataLayer (GA4 format)
+    const items = cart.map(item => ({
+        'item_id': item.id,
+        'item_name': item.name,
         'price': item.price,
-        'category': item.category,
+        'item_category': item.category,
         'quantity': item.quantity
     }));
     
+    window.dataLayer.push({ ecommerce: null });
     window.dataLayer.push({
         'event': 'view_cart',
         'ecommerce': {
-            'currencyCode': 'EUR',
-            'cart_total': calculateSubtotal(),
-            'cart_items': cart.reduce((sum, item) => sum + item.quantity, 0),
-            'products': products
+            'currency': 'EUR',
+            'value': calculateSubtotal(),
+            'items': items
         }
     });
 }
@@ -301,19 +302,20 @@ function removeFromCart(productId) {
     const product = cart.find(item => item.id === productId);
     
     if (product) {
-        // Push remove_from_cart event to dataLayer
+        // Push remove_from_cart event to dataLayer (GA4 format)
+        window.dataLayer.push({ ecommerce: null });
         window.dataLayer.push({
             'event': 'remove_from_cart',
             'ecommerce': {
-                'remove': {
-                    'products': [{
-                        'id': product.id,
-                        'name': product.name,
-                        'price': product.price,
-                        'category': product.category,
-                        'quantity': product.quantity
-                    }]
-                }
+                'currency': 'EUR',
+                'value': product.price * product.quantity,
+                'items': [{
+                    'item_id': product.id,
+                    'item_name': product.name,
+                    'price': product.price,
+                    'item_category': product.category,
+                    'quantity': product.quantity
+                }]
             }
         });
     }
@@ -355,23 +357,22 @@ function goToCheckout() {
         return;
     }
     
-    // Push begin_checkout event to dataLayer
-    const products = cart.map(item => ({
-        'id': item.id,
-        'name': item.name,
+    // Push begin_checkout event to dataLayer (GA4 format)
+    const items = cart.map(item => ({
+        'item_id': item.id,
+        'item_name': item.name,
         'price': item.price,
-        'category': item.category,
+        'item_category': item.category,
         'quantity': item.quantity
     }));
     
+    window.dataLayer.push({ ecommerce: null });
     window.dataLayer.push({
         'event': 'begin_checkout',
         'ecommerce': {
-            'currencyCode': 'EUR',
-            'checkout': {
-                'actionField': {'step': 1},
-                'products': products
-            }
+            'currency': 'EUR',
+            'value': calculateSubtotal(),
+            'items': items
         }
     });
     
@@ -422,13 +423,20 @@ function goToStep2() {
         return;
     }
     
-    // Push checkout_progress event
+    // Push add_shipping_info event (GA4 format)
+    window.dataLayer.push({ ecommerce: null });
     window.dataLayer.push({
-        'event': 'checkout_progress',
+        'event': 'add_shipping_info',
         'ecommerce': {
-            'checkout': {
-                'actionField': {'step': 2},
-            }
+            'currency': 'EUR',
+            'value': calculateSubtotal(),
+            'items': cart.map(item => ({
+                'item_id': item.id,
+                'item_name': item.name,
+                'price': item.price,
+                'item_category': item.category,
+                'quantity': item.quantity
+            }))
         }
     });
     
@@ -436,13 +444,21 @@ function goToStep2() {
 }
 
 function goToStep3() {
-    // Push checkout_progress event
+    // Push add_payment_info event (GA4 format)
+    window.dataLayer.push({ ecommerce: null });
     window.dataLayer.push({
-        'event': 'checkout_progress',
+        'event': 'add_payment_info',
         'ecommerce': {
-            'checkout': {
-                'actionField': {'step': 3},
-            }
+            'currency': 'EUR',
+            'value': calculateSubtotal(),
+            'payment_type': document.querySelector('input[name="payment"]:checked')?.value || 'credit-card',
+            'items': cart.map(item => ({
+                'item_id': item.id,
+                'item_name': item.name,
+                'price': item.price,
+                'item_category': item.category,
+                'quantity': item.quantity
+            }))
         }
     });
     
@@ -540,30 +556,28 @@ function completePurchase() {
     const discount = parseFloat(localStorage.getItem('discount') || 0);
     const total = subtotal + shipping - discount;
     
-    // Prepare products for dataLayer
-    const products = cart.map(item => ({
-        'id': item.id,
-        'name': item.name,
+    // Prepare items for dataLayer (GA4 format)
+    const items = cart.map(item => ({
+        'item_id': item.id,
+        'item_name': item.name,
         'price': item.price,
-        'category': item.category,
+        'item_category': item.category,
         'quantity': item.quantity
     }));
     
-    // Push purchase event to dataLayer
+    // Push purchase event to dataLayer (GA4 format)
+    window.dataLayer.push({ ecommerce: null });
     window.dataLayer.push({
         'event': 'purchase',
         'ecommerce': {
-            'purchase': {
-                'actionField': {
-                    'id': orderId,
-                    'affiliation': 'Mi Tienda Demo',
-                    'revenue': total.toFixed(2),
-                    'tax': '0.00',
-                    'shipping': shipping.toFixed(2),
-                    'coupon': discount > 0 ? 'WELCOME10' : ''
-                },
-                'products': products
-            }
+            'transaction_id': orderId,
+            'affiliation': 'Mi Tienda Demo',
+            'value': parseFloat(total.toFixed(2)),
+            'tax': 0,
+            'shipping': parseFloat(shipping.toFixed(2)),
+            'currency': 'EUR',
+            'coupon': discount > 0 ? 'WELCOME10' : '',
+            'items': items
         }
     });
     
@@ -827,3 +841,4 @@ window.addEventListener('scroll', function() {
         }
     });
 });
+
