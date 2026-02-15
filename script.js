@@ -81,11 +81,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Search functionality
+    // Search functionality (con debounce de 500ms para evitar un evento por letra)
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
+        let searchTimeout;
         searchInput.addEventListener('input', function() {
-            applyFilters();
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(function() {
+                applyFilters();
+            }, 500);
         });
     }
     
@@ -841,4 +845,3 @@ window.addEventListener('scroll', function() {
         }
     });
 });
-
