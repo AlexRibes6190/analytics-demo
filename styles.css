@@ -297,6 +297,28 @@ nav a:hover, nav a.active {
     background: #e74c3c;
 }
 
+.search-box {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.btn-search {
+    padding: 0.6rem 1.2rem;
+    background: #2d3436;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.btn-search:hover {
+    background: #636e72;
+}
+
 /* Video Section */
 .video-section {
     background: #f8f9fa;
