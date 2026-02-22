@@ -2,31 +2,10 @@
 window.dataLayer = window.dataLayer || [];
 
 // ==========================================
-// 1. SCROLL DEPTH TRACKING
+// SCROLL DEPTH TRACKING
 // ==========================================
-let scrollTracked = {
-    25: false,
-    50: false,
-    75: false,
-    100: false
-};
-
-window.addEventListener('scroll', function() {
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (window.scrollY / scrollHeight) * 100;
-    
-    [25, 50, 75, 100].forEach(milestone => {
-        if (scrollPercent >= milestone && !scrollTracked[milestone]) {
-            window.dataLayer.push({
-                event: 'scroll_depth',
-                scroll_percentage: milestone,
-                article_title: document.title
-            });
-            scrollTracked[milestone] = true;
-            console.log(`✅ Scroll depth: ${milestone}%`);
-        }
-    });
-});
+// ⚠️ DESACTIVADO - Ahora usamos el trigger de GTM
+// El trigger "Scroll Depth" de GTM lo maneja automáticamente
 
 // ==========================================
 // 2. SOCIAL SHARE CLICKS
