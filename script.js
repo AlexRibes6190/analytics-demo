@@ -890,20 +890,5 @@ function openChat() {
 }
 
 // Scroll Tracking
-let scrollDepths = [25, 50, 75, 100];
-let scrollTracked = [];
-
-window.addEventListener('scroll', function() {
-    const scrollPercentage = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
-    
-    scrollDepths.forEach(depth => {
-        if (scrollPercentage >= depth && !scrollTracked.includes(depth)) {
-            scrollTracked.push(depth);
-            
-            window.dataLayer.push({
-                'event': 'scroll_depth',
-                'scroll_percentage': depth
-            });
-        }
-    });
-});
+// ⚠️ DESACTIVADO - Ahora usamos el trigger "Scroll Depth" de GTM
+// GTM lo maneja automáticamente sin necesidad de código
