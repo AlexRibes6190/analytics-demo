@@ -38,12 +38,17 @@
         <article class="blog-post">
             <!-- Header del artículo -->
             <header class="post-header">
-                <span class="blog-category">Analytics</span>
+                <span class="blog-category">ANALYTICS</span>
                 <h1>Cómo configurar Google Analytics 4 desde cero</h1>
                 <div class="post-meta">
                     <span>📅 15 de Febrero, 2026</span>
                     <span>⏱️ 8 min de lectura</span>
                     <span>👤 Por Alex Analytics</span>
+                </div>
+                
+                <!-- Reading progress bar -->
+                <div class="reading-progress">
+                    <div class="reading-progress-bar" id="reading-progress-bar"></div>
                 </div>
             </header>
 
@@ -77,13 +82,31 @@
 
                 <p>Si prefieres aprender más sobre las diferencias entre UA y GA4, te recomiendo leer nuestra <a href="#" data-internal="true">guía de migración de Universal Analytics a GA4</a>.</p>
 
+                <!-- Callout interactivo -->
+                <div class="interactive-callout">
+                    <h4>💡 ¿Sabías que...?</h4>
+                    <p>GA4 puede recopilar datos de aplicaciones móviles y sitios web en una sola propiedad.</p>
+                    <button class="callout-btn" data-action="learn-more">Quiero saber más</button>
+                </div>
+
                 <h2 id="requisitos">Requisitos previos</h2>
                 <p>Antes de empezar, asegúrate de tener:</p>
-                <ul>
-                    <li>Una cuenta de Google</li>
-                    <li>Acceso administrativo a tu sitio web</li>
-                    <li>Conocimientos básicos de HTML (opcional pero recomendado)</li>
-                </ul>
+                
+                <!-- Checklist interactiva -->
+                <div class="checklist">
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-item="google-account">
+                        <span>Una cuenta de Google</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-item="admin-access">
+                        <span>Acceso administrativo a tu sitio web</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-item="html-knowledge">
+                        <span>Conocimientos básicos de HTML (opcional)</span>
+                    </label>
+                </div>
 
                 <div class="info-box">
                     <strong>💡 Consejo:</strong> Si aún no tienes una cuenta de Google Analytics, puedes crearla gratuitamente en <a href="https://analytics.google.com" target="_blank" rel="noopener">analytics.google.com</a>.
@@ -100,7 +123,24 @@
                     <li>Selecciona tu zona horaria y moneda</li>
                 </ol>
 
-                <img src="https://via.placeholder.com/800x400/4A90E2/FFFFFF?text=Crear+Propiedad+GA4" alt="Crear propiedad GA4" class="article-image">
+                <img src="https://via.placeholder.com/800x400/028090/FFFFFF?text=Crear+Propiedad+GA4" alt="Crear propiedad GA4" class="article-image">
+
+                <!-- Video embebido -->
+                <div class="video-embed-section">
+                    <h3>📹 Tutorial en vídeo</h3>
+                    <div class="video-wrapper">
+                        <iframe 
+                            id="tutorial-video"
+                            width="560" 
+                            height="315" 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" 
+                            title="Tutorial GA4" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
 
                 <h2 id="instalar-codigo">Instalar código de seguimiento</h2>
                 <p>Una vez creada la propiedad, necesitas instalar el código de seguimiento. La forma recomendada es usar Google Tag Manager:</p>
@@ -108,8 +148,8 @@
                 <div class="code-block">
                     <button class="copy-code-btn">📋 Copiar</button>
                     <pre><code>// En Google Tag Manager
-// 1. Crea una etiqueta de tipo "Google Analytics: GA4 Configuration"
-// 2. Introduce tu Measurement ID (G-XXXXXXXXXX)
+// 1. Crea una etiqueta de tipo "Google Tag"
+// 2. Introduce tu Tag ID (G-XXXXXXXXXX)
 // 3. Configura el activador en "All Pages"
 
 // El código se verá así en tu página:
@@ -131,7 +171,20 @@ gtag('config', 'G-XXXXXXXXXX');</code></pre>
                 </div>
 
                 <div class="warning-box">
-                    <strong>⚠️ Importante:</strong> Reemplaza <code>G-XXXXXXXXXX</code> con tu Measurement ID real que encontrarás en Admin → Data Streams.
+                    <strong>⚠️ Importante:</strong> Reemplaza <code>G-XXXXXXXXXX</code> con tu Tag ID real que encontrarás en Admin → Data Streams.
+                </div>
+
+                <!-- Poll interactivo -->
+                <div class="poll-widget">
+                    <h4>📊 ¿Cómo prefieres instalar GA4?</h4>
+                    <div class="poll-options">
+                        <button class="poll-option" data-option="gtm">Con Google Tag Manager</button>
+                        <button class="poll-option" data-option="manual">Instalación manual</button>
+                        <button class="poll-option" data-option="plugin">Plugin de WordPress</button>
+                    </div>
+                    <div class="poll-results" style="display:none;">
+                        <p>¡Gracias por tu respuesta! <span id="poll-result-text"></span></p>
+                    </div>
                 </div>
 
                 <h2 id="verificar">Verificar instalación</h2>
@@ -146,6 +199,19 @@ gtag('config', 'G-XXXXXXXXXX');</code></pre>
 
                 <p>Si ves eventos como <code>page_view</code>, <code>session_start</code> y <code>first_visit</code>, ¡felicidades! GA4 está correctamente instalado.</p>
 
+                <!-- Rating widget -->
+                <div class="rating-widget">
+                    <h4>¿Te ha resultado útil este artículo?</h4>
+                    <div class="rating-stars">
+                        <span class="star" data-rating="1">⭐</span>
+                        <span class="star" data-rating="2">⭐</span>
+                        <span class="star" data-rating="3">⭐</span>
+                        <span class="star" data-rating="4">⭐</span>
+                        <span class="star" data-rating="5">⭐</span>
+                    </div>
+                    <p class="rating-feedback" style="display:none;">¡Gracias por tu valoración!</p>
+                </div>
+
                 <h2 id="conclusion">Conclusión</h2>
                 <p>Has aprendido a configurar Google Analytics 4 desde cero. Este es solo el principio de tu journey con GA4. Los siguientes pasos recomendados son:</p>
 
@@ -155,6 +221,17 @@ gtag('config', 'G-XXXXXXXXXX');</code></pre>
                     <li>Crear audiencias y conversiones</li>
                     <li>Conectar GA4 con Google Ads</li>
                 </ul>
+
+                <!-- Newsletter CTA -->
+                <div class="newsletter-cta">
+                    <h3>📧 ¿Quieres más contenido sobre Analytics?</h3>
+                    <p>Suscríbete a nuestra newsletter y recibe tips semanales</p>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <input type="email" placeholder="tu@email.com" required>
+                        <button type="submit">Suscribirme</button>
+                    </form>
+                    <p class="newsletter-success" style="display:none;">✅ ¡Te has suscrito con éxito!</p>
+                </div>
 
                 <p>Si tienes dudas o necesitas ayuda, déjame un comentario abajo o sígueme en Twitter para más contenido sobre analytics.</p>
             </div>

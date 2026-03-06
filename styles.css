@@ -1708,3 +1708,262 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* ========================================
+   NEW INTERACTIVE ELEMENTS
+======================================== */
+
+/* Reading Progress Bar */
+.reading-progress {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    background: #e0e0e0;
+    margin-top: 1.5rem;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.reading-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #028090, #00a896);
+    width: 0%;
+    transition: width 0.2s ease;
+}
+
+/* Interactive Callout */
+.interactive-callout {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.interactive-callout h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.3rem;
+}
+
+.interactive-callout p {
+    margin: 0 0 1rem;
+    color: #f0f0f0;
+}
+
+.callout-btn {
+    background: white;
+    color: #667eea;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.callout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Checklist */
+.checklist {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    border-left: 4px solid #028090;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 0;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.05rem;
+}
+
+.checklist-item:hover {
+    background: #e3f2fd;
+    padding-left: 0.5rem;
+    border-radius: 4px;
+}
+
+.checklist-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 1rem;
+    cursor: pointer;
+    accent-color: #028090;
+}
+
+/* Video Embed Section */
+.video-embed-section {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.video-embed-section h3 {
+    margin: 0 0 1rem;
+    color: #2d3436;
+}
+
+/* Poll Widget */
+.poll-widget {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.poll-widget h4 {
+    margin: 0 0 1.5rem;
+    font-size: 1.2rem;
+}
+
+.poll-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.poll-option {
+    background: white;
+    color: #2d3436;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: left;
+}
+
+.poll-option:hover {
+    transform: translateX(10px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.poll-results {
+    background: rgba(255,255,255,0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Rating Widget */
+.rating-widget {
+    background: #fff9e6;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+    text-align: center;
+    border: 2px solid #ffa502;
+}
+
+.rating-widget h4 {
+    margin: 0 0 1rem;
+    color: #2d3436;
+}
+
+.rating-stars {
+    font-size: 2.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.star {
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.star:hover {
+    transform: scale(1.2);
+}
+
+.rating-feedback {
+    margin-top: 1rem;
+    color: #27ae60;
+    font-weight: 600;
+}
+
+/* Newsletter CTA */
+.newsletter-cta {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.newsletter-cta h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.8rem;
+}
+
+.newsletter-cta p {
+    margin: 0 0 1.5rem;
+    color: #f0f0f0;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.newsletter-form button {
+    padding: 0.8rem 1.5rem;
+    background: white;
+    color: #667eea;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.newsletter-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.newsletter-success {
+    color: #2ecc71;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Responsive para nuevos elementos */
+@media (max-width: 768px) {
+    .interactive-callout,
+    .poll-widget,
+    .rating-widget,
+    .newsletter-cta {
+        padding: 1.5rem;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .poll-options {
+        gap: 0.5rem;
+    }
+}
+

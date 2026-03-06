@@ -8,7 +8,29 @@ window.dataLayer = window.dataLayer || [];
 // El trigger "Scroll Depth" de GTM lo maneja automáticamente
 
 // ==========================================
-// 2. SOCIAL SHARE CLICKS
+// READING PROGRESS BAR
+// ==========================================
+window.addEventListener('scroll', function() {
+    const article = document.querySelector('.article-content');
+    if (!article) return;
+    
+    const articleTop = article.offsetTop;
+    const articleHeight = article.offsetHeight;
+    const windowHeight = window.innerHeight;
+    const scrollY = window.scrollY;
+    
+    const progress = Math.min(100, Math.max(0, 
+        ((scrollY - articleTop + windowHeight) / articleHeight) * 100
+    ));
+    
+    const progressBar = document.getElementById('reading-progress-bar');
+    if (progressBar) {
+        progressBar.style.width = progress + '%';
+    }
+});
+
+// ==========================================
+// SOCIAL SHARE CLICKS
 // ==========================================
 document.querySelectorAll('.share-btn').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -28,7 +50,7 @@ document.querySelectorAll('.share-btn').forEach(btn => {
 });
 
 // ==========================================
-// 3. INTERNAL & EXTERNAL LINK CLICKS
+// INTERNAL & EXTERNAL LINK CLICKS
 // ==========================================
 document.querySelectorAll('.article-content a').forEach(link => {
     link.addEventListener('click', function(e) {
@@ -48,7 +70,7 @@ document.querySelectorAll('.article-content a').forEach(link => {
 });
 
 // ==========================================
-// 4. TABLE OF CONTENTS NAVIGATION
+// TABLE OF CONTENTS NAVIGATION
 // ==========================================
 document.querySelectorAll('.toc a').forEach(link => {
     link.addEventListener('click', function(e) {
@@ -65,7 +87,7 @@ document.querySelectorAll('.toc a').forEach(link => {
 });
 
 // ==========================================
-// 5. CODE COPY TO CLIPBOARD
+// CODE COPY TO CLIPBOARD
 // ==========================================
 document.querySelectorAll('.copy-code-btn').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -92,7 +114,7 @@ document.querySelectorAll('.copy-code-btn').forEach(btn => {
 });
 
 // ==========================================
-// 6. RELATED ARTICLES CLICKS
+// RELATED ARTICLES CLICKS
 // ==========================================
 document.querySelectorAll('.related-articles a').forEach((link, index) => {
     link.addEventListener('click', function(e) {
@@ -108,6 +130,118 @@ document.querySelectorAll('.related-articles a').forEach((link, index) => {
         console.log(`✅ Related article click: ${relatedTitle} (position ${index + 1})`);
     });
 });
+
+// ==========================================
+// INTERACTIVE CALLOUT BUTTON
+// ==========================================
+document.querySelectorAll('.callout-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const action = this.getAttribute('data-action');
+        
+        window.dataLayer.push({
+            event: 'callout_interaction',
+            callout_action: action,
+            article_title: document.title
+        });
+        
+        console.log(`✅ Callout interaction: ${action}`);
+        alert('Redirigiendo a más información...');
+    });
+});
+
+// ==========================================
+// CHECKLIST INTERACTIONS
+// ==========================================
+document.querySelectorAll('.checklist-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        const item = this.getAttribute('data-item');
+        const isChecked = this.checked;
+        
+        window.dataLayer.push({
+            event: 'checklist_interaction',
+            checklist_item: item,
+            item_checked: isChecked,
+            article_title: document.title
+        });
+        
+        console.log(`✅ Checklist: ${item} - ${isChecked ? 'checked' : 'unchecked'}`);
+    });
+});
+
+// ==========================================
+// POLL WIDGET
+// ==========================================
+document.querySelectorAll('.poll-option').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const option = this.getAttribute('data-option');
+        
+        window.dataLayer.push({
+            event: 'poll_response',
+            poll_question: 'install_preference',
+            poll_answer: option,
+            article_title: document.title
+        });
+        
+        console.log(`✅ Poll response: ${option}`);
+        
+        // Show results
+        document.querySelector('.poll-results').style.display = 'block';
+        document.querySelector('.poll-options').style.display = 'none';
+        
+        const resultTexts = {
+            'gtm': 'GTM es la opción más profesional 👍',
+            'manual': 'La instalación manual te da control total 🔧',
+            'plugin': 'Los plugins facilitan mucho el trabajo ⚡'
+        };
+        
+        document.getElementById('poll-result-text').textContent = resultTexts[option] || '';
+    });
+});
+
+// ==========================================
+// RATING WIDGET
+// ==========================================
+document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', function() {
+        const rating = this.getAttribute('data-rating');
+        
+        window.dataLayer.push({
+            event: 'article_rating',
+            rating_value: parseInt(rating),
+            article_title: document.title
+        });
+        
+        console.log(`✅ Article rated: ${rating} stars`);
+        
+        // Visual feedback
+        document.querySelector('.rating-feedback').style.display = 'block';
+        document.querySelector('.rating-stars').style.opacity = '0.5';
+    });
+});
+
+// ==========================================
+// NEWSLETTER FORM
+// ==========================================
+const newsletterForm = document.getElementById('newsletter-form');
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = this.querySelector('input[type="email"]').value;
+        
+        window.dataLayer.push({
+            event: 'newsletter_signup',
+            signup_location: 'article_bottom',
+            article_title: document.title
+        });
+        
+        console.log('✅ Newsletter signup');
+        
+        // Show success message
+        this.style.display = 'none';
+        document.querySelector('.newsletter-success').style.display = 'block';
+    });
+}
 
 // ==========================================
 // PAGE VIEW EVENT (cuando carga el artículo)
